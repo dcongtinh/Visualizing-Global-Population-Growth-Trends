@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Visualizing Global Population Growth</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css">
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            color: #2c3e50;
+            background-color: #f8f9fa;
+        }
+
+        .hero-section {
+            background: linear-gradient(135deg, #34495e, #2c3e50);
+            color: white;
+            padding: 5rem 0;
+            text-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+        }
+
+        .hero-section h1 {
+            font-size: 2.5rem;
+            font-weight: bold;
+        }
+
+        .hero-section p {
+            font-size: 1.2rem;
+        }
+
+        .navbar {
+            background-color: white;
+            box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .navbar-brand {
+            font-weight: bold;
+            font-size: 1.5rem;
+            color: #2c3e50;
+        }
+
+        .navbar-nav .nav-link {
+            font-size: 1rem;
+            color: #2c3e50;
+            margin-right: 1rem;
+        }
+
+        .navbar-nav .nav-link:hover {
+            color: #1abc9c;
+        }
+
+        .chart-card {
+            border: none;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            background-color: white;
+            overflow: hidden;
+            padding: 1.5rem;
+        }
+
+        .chart-card h5 {
+            font-size: 1.3rem;
+            font-weight: bold;
+            color: #2c3e50;
+            margin-bottom: 1rem;
+        }
+
+        .chart-card p {
+            font-size: 1rem;
+            color: #7f8c8d;
+            margin-top: 1rem;
+        }
+
+        iframe {
+            display: block;
+            width: 100%;
+            height: 450px;
+            border: none;
+        }
+
+        .chart-features {
+            display: flex;
+            justify-content: flex-end;
+            margin-top: 1rem;
+        }
+
+        .chart-features .btn {
+            font-size: 0.9rem;
+            padding: 0.4rem 0.8rem;
+            margin-left: 10px;
+        }
+
+        .section-title {
+            text-align: center;
+            font-weight: bold;
+            font-size: 2rem;
+            color: #34495e;
+            margin-bottom: 2rem;
+        }
+
+        .footer {
+            background-color: #2c3e50;
+            color: white;
+            text-align: center;
+            padding: 2rem 0;
+            font-size: 0.9rem;
+        }
+
+        .info-block {
+            background-color: #f8f9fa;
+            border: 1px solid #dee2e6;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .info-block:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .info-block i {
+            font-size: 2rem;
+            color: #007bff;
+        }
+
+        .info-block p {
+            font-size: 1rem;
+            color: #495057;
+            margin-top: 1rem;
+            font-weight: 500;
+        }
+    </style>
+    <script>
+        // Open chart in fullscreen
+        function openFullscreen(url) {
+            const newWindow = window.open(url, '_blank', 'fullscreen=yes');
+            if (newWindow) {
+                newWindow.focus();
+            } else {
+                alert("Please allow popups for this site");
+            }
+        }
+
+        // Copy embed code to clipboard
+        function copyEmbedCode(url) {
+            const embedCode = `<iframe src="${url}" scrolling="no" style="width:100%; height:450px; border:none;"></iframe>`;
+            navigator.clipboard.writeText(embedCode).then(() => {
+                alert("Embed code copied to clipboard!");
+            }).catch(err => {
+                alert("Failed to copy embed code.");
+            });
+        }
+    </script>
+</head>
+
+<body>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg sticky-top">
+        <div class="container">
+            <a class="navbar-brand" href="#">Population Trends</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link" href="#introduction">Goal</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#group1">Population Distribution</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#group2">Causes of Growth</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#group3">Demographics</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <header class="hero-section text-center">
+        <div class="container">
+            <h1>Visualizing Global Population Growth</h1>
+            <p>Explore demographic trends and gain actionable insights with expertly designed charts and data.</p>
+            <p>By 潘阮明草, 江尚軒, 黎明朋</p>
+        </div>
+    </header>
+
+    <!-- Introduction Section -->
+    <section id="introduction" class="py-5 bg-light">
+        <div class="container">
+            <h2 class="section-title text-primary">Introduction</h2>
+            <p class="text-center mb-4 lead text-secondary">
+                In an era defined by rapid demographic changes, understanding global population dynamics is more crucial
+                than ever. From the fastest-growing regions to shifts in population density, fertility trends, and age
+                demographics, these changes shape the economic, social, and environmental future of our world.
+            </p>
+            <p class="text-center mb-4">
+                <strong>This platform provides interactive visualizations to explore key questions:</strong>
+            </p>
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="info-block text-center shadow-sm p-4 rounded">
+                        <i class="bi bi-geo-alt-fill text-primary fs-3 mb-3"></i>
+                        <p class="mb-0 fw-bold">Where is population growth occurring the fastest, and what are the
+                            contributing factors?</p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="info-block text-center shadow-sm p-4 rounded">
+                        <i class="bi bi-bar-chart-line-fill text-primary fs-3 mb-3"></i>
+                        <p class="mb-0 fw-bold">How have birth and death rates influenced regional population changes
+                            over time?</p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="info-block text-center shadow-sm p-4 rounded">
+                        <i class="bi bi-people-fill text-primary fs-3 mb-3"></i>
+                        <p class="mb-0 fw-bold">What are the future challenges posed by aging populations and shifting
+                            age distributions?</p>
+                    </div>
+                </div>
+            </div>
+
+            <p class="text-center mt-4 text-secondary">
+                <strong>Let the data guide you to uncover actionable insights and a deeper appreciation of our shared
+                    future.</strong>
+            </p>
+        </div>
+    </section>
+
+
+    <!-- Group 1 -->
+    <section id="group1" class="py-5">
+        <div class="container">
+            <h2 class="section-title">Group 1: Identifying Population Distribution and Growth Hotspots</h2>
+            <p class="text-center mb-4">These charts explore population distribution and highlight regions with the
+                fastest growth over time and those with the highest population densities.</p>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="chart-card">
+                        <h5>Global Population Density Over Time</h5>
+                        <iframe src="http://140.113.230.148:5500/figure_1" scrolling="no"></iframe>
+                        <p>Which regions have the highest population density, and how has this evolved over time?</p>
+                        <div class="chart-features">
+                            <button onclick="openFullscreen('http://140.113.230.148:5500/figure_1')"
+                                class="btn btn-primary btn-sm">Fullscreen</button>
+                            <button onclick="copyEmbedCode('http://140.113.230.148:5500/figure_1')"
+                                class="btn btn-secondary btn-sm">Embed</button>
+                            <a href="http://140.113.230.148:5500/dataset/population-density.csv" download
+                                class="btn btn-success btn-sm">Download Dataset</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="chart-card">
+                        <h5>Population by Region Over Time</h5>
+                        <iframe src="http://140.113.230.148:5500/figure_1_2" scrolling="no"></iframe>
+                        <p>Where is the fastest-growing population, and how does this change over time by continent?</p>
+                        <div class="chart-features">
+                            <button onclick="openFullscreen('http://140.113.230.148:5500/figure_1_2')"
+                                class="btn btn-primary btn-sm">Fullscreen</button>
+                            <button onclick="copyEmbedCode('http://140.113.230.148:5500/figure_1_2')"
+                                class="btn btn-secondary btn-sm">Embed</button>
+                            <a href="http://140.113.230.148:5500/dataset/population-regions-with-projections.csv"
+                                download class="btn btn-success btn-sm">Download Dataset</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Group 2 -->
+    <section id="group2" class="py-5 bg-light">
+        <div class="container">
+            <h2 class="section-title">Group 2: Exploring the Causes of Population Growth</h2>
+            <p class="text-center mb-4">These charts examine how natural and societal factors drive population growth,
+                focusing on birth and death rates and regional fertility trends.</p>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="chart-card">
+                        <h5>Birth and Death Rates</h5>
+                        <iframe src="http://140.113.230.148:5500/figure_2" scrolling="no"></iframe>
+                        <p>How do natural factors like births and deaths drive population growth in specific regions?
+                        </p>
+                        <div class="chart-features">
+                            <button onclick="openFullscreen('http://140.113.230.148:5500/figure_2')"
+                                class="btn btn-primary btn-sm">Fullscreen</button>
+                            <button onclick="copyEmbedCode('http://140.113.230.148:5500/figure_2')"
+                                class="btn btn-secondary btn-sm">Embed</button>
+                            <a href="http://140.113.230.148:5500/dataset/birth-rate-vs-death-rate.csv" download
+                                class="btn btn-success btn-sm">Download Dataset</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="chart-card">
+                        <h5>Fertility Rates by Region</h5>
+                        <iframe src="http://140.113.230.148:5500/figure_3" scrolling="no"></iframe>
+                        <p>What cultural, social, or economic factors influence fertility rates and, consequently,
+                            regional growth?</p>
+                        <div class="chart-features">
+                            <button onclick="openFullscreen('http://140.113.230.148:5500/figure_3')"
+                                class="btn btn-primary btn-sm">Fullscreen</button>
+                            <button onclick="copyEmbedCode('http://140.113.230.148:5500/figure_3')"
+                                class="btn btn-secondary btn-sm">Embed</button>
+                            <a href="http://140.113.230.148:5500/dataset/fertility-rate-with-projections.csv" download
+                                class="btn btn-success btn-sm">Download Dataset</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Group 3 -->
+    <section id="group3" class="py-5">
+        <div class="container">
+            <h2 class="section-title">Group 3: Understanding Demographics and Future Trends</h2>
+            <p class="text-center mb-4">These charts highlight demographic structures by age group and show historical
+                and projected global growth trends.</p>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="chart-card">
+                        <h5>Population by Age Group</h5>
+                        <iframe src="http://140.113.230.148:5500/figure_4" scrolling="no"></iframe>
+                        <p>How is the global population structured by age, and what pressures does this create on social
+                            systems?</p>
+                        <div class="chart-features">
+                            <button onclick="openFullscreen('http://140.113.230.148:5500/figure_4')"
+                                class="btn btn-primary btn-sm">Fullscreen</button>
+                            <button onclick="copyEmbedCode('http://140.113.230.148:5500/figure_4')"
+                                class="btn btn-secondary btn-sm">Embed</button>
+                            <a href="http://140.113.230.148:5500/dataset/population-by-age-group.csv" download
+                                class="btn btn-success btn-sm">Download Dataset</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="chart-card">
+                        <h5>Historical Population Growth Rate</h5>
+                        <iframe src="http://140.113.230.148:5500/figure_5" scrolling="no"></iframe>
+                        <p>What has been the global growth rate over time, and how can this inform projections for
+                            future challenges?</p>
+                        <div class="chart-features">
+                            <button onclick="openFullscreen('http://140.113.230.148:5500/figure_5')"
+                                class="btn btn-primary btn-sm">Fullscreen</button>
+                            <button onclick="copyEmbedCode('http://140.113.230.148:5500/figure_5')"
+                                class="btn btn-secondary btn-sm">Embed</button>
+                            <a href="http://140.113.230.148:5500/dataset/population-growth-rates.csv" download
+                                class="btn btn-success btn-sm">Download Dataset</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p>© 2024 Population Trends Project. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>

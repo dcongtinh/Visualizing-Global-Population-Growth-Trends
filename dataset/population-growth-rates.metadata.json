@@ -1,0 +1,47 @@
+{
+  "chart": {
+    "title": "Population growth rate",
+    "subtitle": "[Population growth rate](#dod:population-growth-rate) takes births, deaths and migration into account. Future projections are based on the [UN medium scenario](#dod:un-projection-scenarios).",
+    "citation": "UN, World Population Prospects (2024)",
+    "originalChartUrl": "https://ourworldindata.org/grapher/population-growth-rates?v=1&csvType=full&useColumnShortNames=false",
+    "selection": [
+      "World"
+    ]
+  },
+  "columns": {
+    "Population growth rate - Sex: all - Age: all - Variant: estimates": {
+      "titleShort": "Growth rate,total",
+      "titleLong": "Growth rate,total - UN WPP",
+      "descriptionShort": "Average exponential rate of growth of the population over a given period. It is calculated as ln(P2/P1) where P1 and P2 are the populations on 1 January of subsequent years.",
+      "descriptionKey": [],
+      "shortUnit": "%",
+      "unit": "%",
+      "timespan": "1950-2023",
+      "type": "Numeric",
+      "owidVariableId": 950924,
+      "shortName": "growth_rate__sex_all__age_all__variant_estimates",
+      "lastUpdated": "2024-07-12",
+      "citationShort": "UN, World Population Prospects (2024) – processed by Our World in Data",
+      "citationLong": "UN, World Population Prospects (2024) – processed by Our World in Data. “Growth rate,total – UN WPP” [dataset]. United Nations, “World Population Prospects” [original data].",
+      "fullMetadata": "https://api.ourworldindata.org/v1/indicators/950924.metadata.json"
+    },
+    "Population growth rate - Sex: all - Age: all - Variant: medium": {
+      "titleShort": "Growth rate,medium projection",
+      "titleLong": "Growth rate,medium projection - UN WPP",
+      "descriptionShort": "Average exponential rate of growth of the population over a given period. It is calculated as ln(P2/P1) where P1 and P2 are the populations on 1 January of subsequent years.Projections from 2024 onwards are based on the UN's medium scenario.",
+      "descriptionKey": [],
+      "shortUnit": "%",
+      "unit": "%",
+      "timespan": "2024-2100",
+      "type": "Numeric",
+      "owidVariableId": 950928,
+      "shortName": "growth_rate__sex_all__age_all__variant_medium",
+      "lastUpdated": "2024-07-12",
+      "citationShort": "UN, World Population Prospects (2024) – processed by Our World in Data",
+      "citationLong": "UN, World Population Prospects (2024) – processed by Our World in Data. “Growth rate,medium projection – UN WPP” [dataset]. United Nations, “World Population Prospects” [original data].",
+      "fullMetadata": "https://api.ourworldindata.org/v1/indicators/950928.metadata.json"
+    }
+  },
+  "dateDownloaded": "2024-12-19",
+  "activeFilters": {}
+}

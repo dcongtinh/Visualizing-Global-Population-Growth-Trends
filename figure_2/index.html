@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Responsive Birth Rate vs. Death Rate</title>
+    <!-- Load D3.js -->
+    <script src="https://d3js.org/d3.v6.min.js"></script>
+    <!-- Link CSS -->
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <!-- Visualization Div -->
+    <div id="chart-container">
+        <svg id="chart"></svg>
+    </div>
+    <div id="year-slider-container">
+        <label id="slider-label" for="year-slider">1950</label>
+        <input type="range" id="year-slider" min="1950" max="2023" value="2023" step="1">
+        <span id="year-display">2023</span>
+    </div>
+    <!-- Load JS -->
+    <script src="script.js"></script>
+</body>
+
+</html>

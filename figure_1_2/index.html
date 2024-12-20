@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Responsive Population Chart</title>
+    <!-- Link to external stylesheet -->
+    <link rel="stylesheet" href="style.css">
+    <!-- Load D3.js library -->
+    <script src="https://d3js.org/d3.v6.min.js"></script>
+</head>
+<body>
+    <!-- Container for the chart -->
+    <div id="my_dataviz"></div>
+
+    <!-- Range slider -->
+    <div id="slider-container">
+        <span id="timeLabel">Year: 1950 - 2023</span>
+        <input type="range" id="timeRange" min="1950" max="2023" step="1" value="2023" />
+    </div>
+
+    <!-- Link to the external script -->
+    <script src="script.js"></script>
+</body>
+</html>

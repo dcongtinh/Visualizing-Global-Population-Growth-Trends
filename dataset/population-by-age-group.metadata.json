@@ -1,0 +1,94 @@
+{
+  "chart": {
+    "title": "Population by age group",
+    "citation": "UN, World Population Prospects (2024)",
+    "originalChartUrl": "https://ourworldindata.org/grapher/population-by-age-group?v=1&csvType=full&useColumnShortNames=false",
+    "selection": [
+      "World"
+    ]
+  },
+  "columns": {
+    "Population - Sex: all - Age: 65+ - Variant: estimates": {
+      "titleShort": "Population,ages 65+",
+      "titleLong": "Population,ages 65+ - UN WPP",
+      "descriptionShort": "De facto total population in a country, area or region as of 1 July of the year indicated.This only includesages 65+.",
+      "descriptionKey": [],
+      "unit": "people",
+      "timespan": "1950-2023",
+      "type": "Integer",
+      "conversionFactor": 1,
+      "owidVariableId": 951485,
+      "shortName": "population__sex_all__age_65plus__variant_estimates",
+      "lastUpdated": "2024-07-12",
+      "citationShort": "UN, World Population Prospects (2024) – processed by Our World in Data",
+      "citationLong": "UN, World Population Prospects (2024) – processed by Our World in Data. “Population,ages 65+ – UN WPP” [dataset]. United Nations, “World Population Prospects” [original data].",
+      "fullMetadata": "https://api.ourworldindata.org/v1/indicators/951485.metadata.json"
+    },
+    "Population - Sex: all - Age: 25-64 - Variant: estimates": {
+      "titleShort": "Population,ages 25-64",
+      "titleLong": "Population,ages 25-64 - UN WPP",
+      "descriptionShort": "De facto total population in a country, area or region as of 1 July of the year indicated.This only includesages 25-64.",
+      "descriptionKey": [],
+      "unit": "people",
+      "timespan": "1950-2023",
+      "type": "Integer",
+      "conversionFactor": 1,
+      "owidVariableId": 951249,
+      "shortName": "population__sex_all__age_25_64__variant_estimates",
+      "lastUpdated": "2024-07-12",
+      "citationShort": "UN, World Population Prospects (2024) – processed by Our World in Data",
+      "citationLong": "UN, World Population Prospects (2024) – processed by Our World in Data. “Population,ages 25-64 – UN WPP” [dataset]. United Nations, “World Population Prospects” [original data].",
+      "fullMetadata": "https://api.ourworldindata.org/v1/indicators/951249.metadata.json"
+    },
+    "Population - Sex: all - Age: 15-24 - Variant: estimates": {
+      "titleShort": "Population,ages 15-24",
+      "titleLong": "Population,ages 15-24 - UN WPP",
+      "descriptionShort": "De facto total population in a country, area or region as of 1 July of the year indicated.This only includesages 15-24.",
+      "descriptionKey": [],
+      "unit": "people",
+      "timespan": "1950-2023",
+      "type": "Integer",
+      "conversionFactor": 1,
+      "owidVariableId": 951142,
+      "shortName": "population__sex_all__age_15_24__variant_estimates",
+      "lastUpdated": "2024-07-12",
+      "citationShort": "UN, World Population Prospects (2024) – processed by Our World in Data",
+      "citationLong": "UN, World Population Prospects (2024) – processed by Our World in Data. “Population,ages 15-24 – UN WPP” [dataset]. United Nations, “World Population Prospects” [original data].",
+      "fullMetadata": "https://api.ourworldindata.org/v1/indicators/951142.metadata.json"
+    },
+    "Population - Sex: all - Age: 5-14 - Variant: estimates": {
+      "titleShort": "Population,ages 5-14",
+      "titleLong": "Population,ages 5-14 - UN WPP",
+      "descriptionShort": "De facto total population in a country, area or region as of 1 July of the year indicated.This only includesages 5-14.",
+      "descriptionKey": [],
+      "unit": "people",
+      "timespan": "1950-2023",
+      "type": "Integer",
+      "conversionFactor": 1,
+      "owidVariableId": 951375,
+      "shortName": "population__sex_all__age_5_14__variant_estimates",
+      "lastUpdated": "2024-07-12",
+      "citationShort": "UN, World Population Prospects (2024) – processed by Our World in Data",
+      "citationLong": "UN, World Population Prospects (2024) – processed by Our World in Data. “Population,ages 5-14 – UN WPP” [dataset]. United Nations, “World Population Prospects” [original data].",
+      "fullMetadata": "https://api.ourworldindata.org/v1/indicators/951375.metadata.json"
+    },
+    "Population - Sex: all - Age: 0-4 - Variant: estimates": {
+      "titleShort": "Population,ages 0-4",
+      "titleLong": "Population,ages 0-4 - UN WPP",
+      "descriptionShort": "De facto total population in a country, area or region as of 1 July of the year indicated.This only includesages 0-4.",
+      "descriptionKey": [],
+      "unit": "people",
+      "timespan": "1950-2023",
+      "type": "Integer",
+      "conversionFactor": 1,
+      "owidVariableId": 951024,
+      "shortName": "population__sex_all__age_0_4__variant_estimates",
+      "lastUpdated": "2024-07-12",
+      "citationShort": "UN, World Population Prospects (2024) – processed by Our World in Data",
+      "citationLong": "UN, World Population Prospects (2024) – processed by Our World in Data. “Population,ages 0-4 – UN WPP” [dataset]. United Nations, “World Population Prospects” [original data].",
+      "fullMetadata": "https://api.ourworldindata.org/v1/indicators/951024.metadata.json"
+    }
+  },
+  "dateDownloaded": "2024-12-18",
+  "activeFilters": {}
+}

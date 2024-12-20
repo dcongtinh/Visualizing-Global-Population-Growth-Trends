@@ -1,0 +1,157 @@
+/* General Body Styling */
+body {
+    font-family: 'Poppins', Arial, sans-serif;
+    /* Modern and clean font */
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background-color: white;
+    /* Keep original white background */
+    color: #333;
+}
+
+/* Container for the Chart */
+.chart-container {
+    width: 90%;
+    max-width: 960px;
+    border-radius: 12px;
+    /* Rounded corners for modern feel */
+    padding: 20px;
+    margin: 30px auto;
+}
+
+/* SVG Styling */
+svg {
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+    /* Slightly rounded corners for SVG */
+}
+
+/* Headings */
+h1 {
+    margin: 0 0 15px 0;
+    text-align: center;
+    font-size: 2rem;
+    color: #333;
+    font-weight: 600;
+    text-transform: uppercase;
+}
+
+p {
+    text-align: center;
+    color: #555;
+    font-size: 1rem;
+    margin-bottom: 20px;
+}
+
+/* Tooltip Styling */
+.tooltip {
+    position: absolute;
+    /* Darker background with opacity */
+    color: #f9f9f9;
+    /* Light text for contrast */
+    border-radius: 6px;
+    /* Softer rounded corners */
+    /* Reduced padding for compact design */
+    font-size: 24px;
+    /* Smaller font size for compactness */
+    font-family: 'Poppins', Arial, sans-serif;
+    pointer-events: none;
+    /* Prevents interference with mouse events */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    /* Subtle shadow */
+    line-height: 1.4;
+    min-width: 120px;
+    /* Ensures consistent minimum width */
+    max-width: 200px;
+    /* Limits width */
+    z-index: 1000;
+    transition: opacity 0.3s ease-in-out, transform 0.2s ease;
+    transform: translateY(-8px);
+    /* Slight upward animation */
+}
+
+.tooltip strong {
+    display: block;
+    font-size: 20px;
+    /* Slightly larger for header */
+    color: black;
+    /* Subtle blue highlight */
+    font-weight: 600;
+    margin-bottom: 5px;
+}
+
+.tooltip span {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 12px;
+    color: #f0f0f0;
+    /* Soft white for values */
+}
+
+.tooltip .tooltip-key {
+    font-weight: 400;
+    /* Normal font weight for keys */
+    color: #d1e9ff;
+    /* Light blue for keys */
+}
+
+.tooltip .tooltip-value {
+    font-weight: 700;
+    /* Bold for values */
+    color: #ffffff;
+    /* Pure white for values */
+}
+
+.tooltip span:last-child {
+    margin-bottom: 0;
+}
+
+
+
+/* Axis Lines and Grid */
+.grid line {
+    stroke: #ddd;
+    stroke-dasharray: 4 4;
+    /* Dotted grid lines */
+}
+
+.axis path,
+.axis line {
+    stroke: none;
+}
+
+.axis text {
+    font-size: 12px;
+    fill: #666;
+}
+
+/* Legend Styling */
+.legend text {
+    font-size: 10px;
+    font-weight: 500;
+    fill: #444;
+}
+
+.legend rect {
+    stroke-width: 0;
+    cursor: pointer;
+    transition: opacity 0.2s;
+}
+
+.legend rect:hover {
+    opacity: 0.8;
+}
+
+/* Interactive Effects for Hovered Lines */
+.line {
+    transition: stroke-width 0.3s ease;
+}
+
+.line:hover {
+    stroke-width: 3;
+}

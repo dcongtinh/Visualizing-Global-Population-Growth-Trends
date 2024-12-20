@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Responsive Population Growth Rate Visualization</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://d3js.org/d3.v6.min.js"></script>
+</head>
+
+<body>
+    <div class="chart-container">
+        <select id="country-select"></select>
+        <svg></svg>
+        <div class="controls">
+            <span id="timeLabel">Year: 1950 - 2100</span>
+            <input type="range" id="timeRange" min="1950" max="2100" step="1" value="2100">
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+
+</html>

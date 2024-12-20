@@ -1,0 +1,154 @@
+body {
+    background-color: white;
+    min-height: 100%;
+    font-family: "Verdana", sans-serif;
+    margin: 0;
+}
+
+#root {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    flex-direction: column;
+    padding: 20px;
+}
+
+.svg-container {
+    width: 90%;
+    max-width: 800px;
+    height: auto;
+    margin: 20px 0;
+}
+
+svg {
+    width: 100%;
+    height: 100%;
+}
+
+h1 {
+    margin: 0;
+    font-size: 22px;
+    font-weight: bold;
+    text-align: center;
+    color: #333;
+    margin-bottom: 10px;
+}
+
+#legend {
+    font-size: 0.9em;
+    letter-spacing: 0.5px;
+    color: #555;
+    text-align: center;
+    margin: 10px 0;
+}
+
+/* Tooltip Styling */
+.tooltip {
+    position: absolute;
+    padding: 10px;
+    background: #ffffff;
+    border: 1px solid #ddd;
+    font-family: Arial, sans-serif;
+    font-size: 14px;
+    color: #333;
+    pointer-events: none;
+}
+
+/* SVG background */
+.background {
+    fill: white;
+}
+
+/* World Map Styling */
+.world {
+    transform-origin: center;
+    stroke: #666; /* Border for countries */
+    stroke-width: 0.5;
+    fill: #ccc; /* Default country fill */
+}
+
+.world path:hover {
+    fill: #ffa500; /* Highlight countries on hover */
+    stroke: #333; /* Highlight border */
+    stroke-width: 1;
+}
+
+/* Color Bar Styling */
+.color-bar-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+}
+
+.color-bar-container svg {
+    margin: 0 auto;
+}
+
+.legend rect {
+    stroke: #bbb; /* Subtle border for rectangles */
+    stroke-width: 1px;
+    border-radius: 0px; /* Removed rounded corners */
+    cursor: pointer;
+}
+
+.legend rect:hover {
+    stroke-width: 1px;
+}
+
+.legend text {
+    font-size: 12px;
+    font-weight: normal;
+    fill: #444;
+    text-align: center;
+}
+
+/* Slider Container */
+.slider-container {
+    display: flex;
+    align-items: center;
+    width: 400px;
+    margin: auto;
+    font-family: Arial, sans-serif;
+}
+
+/* Labels at both ends of the slider */
+.slider-labels {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    font-size: 14px;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 5px;
+}
+
+/* Slider Styling */
+input[type="range"] {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 100%;
+    height: 8px;
+    background: #ddd;
+    border-radius: 5px;
+    outline: none;
+    cursor: pointer;
+}
+
+/* Slider Thumb */
+input[type="range"]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 16px;
+    height: 16px;
+    background: #007bff; /* Thumb color */
+    border-radius: 50%;
+    border: 2px solid white;
+    transition: transform 0.2s;
+}
+
+input[type="range"]::-webkit-slider-thumb:hover {
+    transform: scale(1.2);
+}
+

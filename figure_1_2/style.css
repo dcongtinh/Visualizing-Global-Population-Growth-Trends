@@ -1,0 +1,189 @@
+/* General Reset */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background-color: white;
+    overflow-x: hidden;
+    /* Prevent horizontal scroll */
+}
+
+/* Chart Container */
+#my_dataviz {
+    width: 90%;
+    max-width: 1000px;
+    height: auto;
+    aspect-ratio: 16 / 9;
+    padding: 20px;
+    box-sizing: border-box;
+    /* Ensure padding doesn’t add to total width */
+}
+
+/* Slider Container */
+#slider-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: nowrap;
+    /* Prevent overflow */
+    width: 100%;
+    box-sizing: border-box;
+}
+
+#slider-container input[type="range"] {
+    margin: 0 10px;
+    width: 300px;
+}
+
+#slider-container label,
+#slider-container span {
+    font-size: 14px;
+    font-weight: bold;
+    color: #333;
+    text-align: center;
+    /* Keep elements centered */
+}
+
+/* Tooltip Styles */
+.tooltip {
+    position: absolute;
+    text-align: left;
+    background: rgba(255, 255, 255, 0.95);
+    border: 1px solid #e0e0e0;
+    border-radius: 10px;
+    padding: 10px 15px;
+    font-size: 14px;
+    font-family: 'Arial', sans-serif;
+    box-shadow: 0px 6px 15px rgba(0, 0, 0, 0.2);
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.3s ease, transform 0.2s ease;
+    transform: translateY(-10px) scale(0.95);
+    color: #333;
+}
+
+.tooltip[data-active="true"] {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+}
+
+/* Country Selection Controls */
+#controls {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+    margin: 15px 0;
+    flex-wrap: wrap;
+    /* Prevent overflow */
+    width: 100%;
+    box-sizing: border-box;
+}
+
+#controls label {
+    font-size: 16px;
+    font-weight: bold;
+    margin-right: 10px;
+    color: #333;
+}
+
+#countrySelect {
+    appearance: none;
+    background-color: #fff;
+    border: 2px solid #377eb8;
+    border-radius: 6px;
+    padding: 8px 12px;
+    font-size: 16px;
+    font-weight: 500;
+    color: #333;
+    outline: none;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+    max-width: 300px;
+    box-sizing: border-box;
+}
+
+#countrySelect:hover {
+    border-color: #4daf4a;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+#countrySelect:focus {
+    border-color: #ff7f00;
+    box-shadow: 0px 4px 8px rgba(255, 127, 0, 0.3);
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+    #controls {
+        align-items: center;
+        margin: 0px 0;
+    }
+
+    #controls label {
+        margin-bottom: 8px;
+    }
+
+    #slider-container {
+        align-items: center;
+    }
+
+    #slider-container label,
+    #slider-container span {
+        margin-top: 0px;
+    }
+
+    #my_dataviz {
+        padding: 0;
+        /* Reduce padding for smaller screens */
+        width: 95%;
+        /* Adjust chart width */
+    }
+}
+
+#timeRange {
+    width: 90%;
+    max-width: 500px;
+    margin: 10px 0;
+    -webkit-appearance: none;
+    appearance: none;
+    height: 6px;
+    background: #ddd;
+    border-radius: 5px;
+    outline: none;
+    transition: background 0.3s ease;
+}
+
+#timeRange::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background: #00aaff;
+    cursor: pointer;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+#timeRange::-moz-range-thumb {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background: #00aaff;
+    cursor: pointer;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+#timeRange::-ms-thumb {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background: #00aaff;
+    cursor: pointer;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}

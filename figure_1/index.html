@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>population density</title>
+    <link rel="stylesheet" href="style.css">
+    <script>
+        window.console = window.console || function (t) { };
+    </script>
+</head>
+
+<body>
+    <div id="root">
+        <div class="svg-container">
+            <svg id="my_dataviz"></svg>
+        </div>
+        <!-- Color bar -->
+        <div class="color-bar-container">
+            <!-- Put the code here -->
+        </div>
+        <!-- Slider for selecting the year -->
+        <div class="slider-container" style="text-align: center;">
+            <span id="min-year">1950</span>
+            <input type="range" id="year-slider" min="1950" max="2023" value="2023" step="1"
+                style="margin: 0 10px; width: 300px;" />
+            <span id="current-year">2023</span> 
+        </div>
+    </div>
+    <script src="https://d3js.org/d3.v7.min.js"></script>
+    <script src="https://d3js.org/d3-scale-chromatic.v1.min.js"></script>
+    <script src="https://d3js.org/d3-geo-projection.v2.min.js"></script>
+    <script src="313540015.js"></script>
+    <div class="tooltip" style="opacity: 0; left: 1132px; top: 92px;">Russia: 144 mio.</div>
+</body>
+
+</html>

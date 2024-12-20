@@ -1,0 +1,51 @@
+Figure 2:
+- Background white
+- Tooltip more attractive
+- Legend
+- Country name
+- Change Year
+- Five ticks
+- Grid dash
+
+Figure 3:
+- Hover Legend
+- Hover line --- Tooltip
+- Add the points on the line when Hover
+- Edit the Tooltip
+
+
+
+# Should visual to 2100 --> All of them
+
+
+
+    // // Add labels at the end of each line
+    // regions.forEach((values, key) => {
+    //     const lastDataPoint = values[values.length - 1]; // Last year data
+    //     svg.append("text")
+    //         .attr("x", x(lastDataPoint.Year) + 5) // Slightly offset to the right
+    //         .attr("y", y(lastDataPoint.FertilityEstimate))
+    //         .attr("dy", "0.35em")
+    //         .style("fill", color(key))
+    //         .style("font-size", "12px")
+    //         .text(key);
+    // });
+
+
+# Tasks:
+- Revise the hover in figure 2 - OK
+
+- Do the figure 4 - OK
+- Do the figure 5 - OK
+
+- Generate the new website with HTML, JS, CSS - OK
+- Choose the way to show chart.  - OK
+- Resizable chart. - OK
+- Add the chart from ourworldata. - OK
+
+- Qualify the chart for the same visual - OK
+- Make the chart of ourworldata hide some information - OK
+- Make the donwload dataset features and the embeded features and share features - OK
+- Make fullscreen view - OK
+- Make the introduction - OK 
+- Make the group analysis - OK  (Script)

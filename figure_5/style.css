@@ -1,0 +1,232 @@
+/* General Body Styling */
+body {
+    font-family: 'Poppins', Arial, sans-serif;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background-color: white;
+    color: #333;
+}
+.controls{
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+}
+
+.controls input[type="range"] {
+    max-width: 300px !important;
+}
+
+/* Container for the Chart */
+.chart-container {
+    width: 90%;
+    max-width: 960px;
+    border-radius: 12px;
+    padding: 20px;
+    margin: 30px auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    /* Center content horizontally */
+}
+
+/* SVG Styling */
+svg {
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+}
+
+/* Dropdown Styling */
+label {
+    font-size: 14px;
+    color: #555;
+    font-weight: 500;
+    margin-right: 10px;
+}
+
+#country-select {
+    font-family: 'Poppins', Arial, sans-serif;
+    font-size: 14px;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    color: #555;
+    cursor: pointer;
+    background-color: #f9f9f9;
+    transition: border-color 0.2s ease-in-out;
+}
+
+#country-select:focus {
+    border-color: #00aaff;
+    outline: none;
+}
+
+/* Year Range Slider Styling */
+#slider-container {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    margin-top: 10px;
+}
+
+#timeRange {
+    width: 90%;
+    max-width: 500px;
+    margin: 10px 0;
+    -webkit-appearance: none;
+    appearance: none;
+    height: 6px;
+    background: #ddd;
+    border-radius: 5px;
+    outline: none;
+    transition: background 0.3s ease;
+}
+
+#timeRange::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background: #00aaff;
+    cursor: pointer;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+#timeRange::-moz-range-thumb {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background: #00aaff;
+    cursor: pointer;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+#timeRange::-ms-thumb {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background: #00aaff;
+    cursor: pointer;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+#timeLabel {
+    font-size: 14px;
+    color: black;
+    font-weight:
+        500;
+    text-align: center;
+    margin-right: 10px;
+    font-weight: bold;
+}
+
+/* Tooltip Styling */
+.tooltip {
+    position: absolute;
+    background: #ffffff;
+    color: #333333;
+    border-radius: 6px;
+    border: 1px solid #dddddd;
+    padding: 10px 12px;
+    font-size: 12px;
+    font-family: 'Poppins', Arial, sans-serif;
+    pointer-events: none;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    line-height: 1.6;
+    min-width: 150px;
+    max-width: 220px;
+    z-index: 1000;
+    transition: opacity 0.3s ease-in-out, transform 0.2s ease;
+    transform: translateY(-10px);
+    opacity: 0;
+}
+
+.tooltip strong {
+    display: block;
+    font-size: 16px;
+    color: #000000;
+    font-weight: 700;
+    margin-bottom: 10px;
+}
+
+.tooltip-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 5px;
+}
+
+.tooltip-row:last-child {
+    margin-bottom: 0;
+}
+
+.tooltip .tooltip-key {
+    display: flex;
+    align-items: center;
+    font-weight: 400;
+    font-size: 12px;
+    color: #555555;
+}
+
+.tooltip .tooltip-color-box {
+    width: 14px;
+    height: 14px;
+    margin-right: 8px;
+    display: inline-block;
+    background: #dc3545;
+    border-radius: 2px;
+}
+
+.tooltip .tooltip-value {
+    font-weight: 700;
+    font-size: 12px;
+    color: #333333;
+}
+
+/* Axis Lines and Grid */
+.grid line {
+    stroke: #ddd;
+    stroke-dasharray: 4 4;
+}
+
+.axis path,
+.axis line {
+    stroke: none;
+}
+
+.axis text {
+    font-size: 12px;
+    fill: #666;
+}
+
+/* Legend Styling */
+.legend text {
+    font-size: 10px;
+    font-weight: 500;
+    fill: #444;
+}
+
+.legend rect {
+    stroke-width: 0;
+    cursor: pointer;
+    transition: opacity 0.2s;
+}
+
+.legend rect:hover {
+    opacity: 0.8;
+}
+
+/* Interactive Effects for Hovered Lines */
+.line {
+    transition: stroke-width 0.3s ease;
+}
+
+.line:hover {
+    stroke-width: 3;
+}
