@@ -7,129 +7,233 @@
     <title>Visualizing Global Population Growth</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css">
     <style>
+        /* General Styles */
         body {
             font-family: 'Poppins', sans-serif;
             color: #2c3e50;
             background-color: #f8f9fa;
+            margin: 0;
+            padding: 0;
         }
 
         .hero-section {
-            background: linear-gradient(135deg, #34495e, #2c3e50);
+            position: relative;
+            height: 100vh;
+            /* Full-screen height */
+            background: url('./background.jpg') center/cover no-repeat;
+            /* Path to your uploaded image */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+
+        .hero-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            /* Dark overlay for better text contrast */
+            z-index: 1;
+        }
+
+        .hero-section .container {
+            position: relative;
+            z-index: 2;
+            /* Ensure content is above the overlay */
+            text-align: center;
             color: white;
-            padding: 5rem 0;
-            text-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+            /* Bright white text for visibility */
+            padding: 2rem;
         }
 
         .hero-section h1 {
-            font-size: 2.5rem;
+            font-size: 4rem;
             font-weight: bold;
+            margin-bottom: 1.5rem;
+            line-height: 1.2;
+            color: #ffffff;
+            /* Bright white */
+            text-shadow: 0px 4px 10px rgba(0, 0, 0, 0.8);
+            /* Add subtle shadow for readability */
         }
 
         .hero-section p {
-            font-size: 1.2rem;
+            font-size: 1.5rem;
+            line-height: 1.8;
+            max-width: 800px;
+            margin: 0 auto;
+            color: #f1f1f1;
+            /* Light gray for softer contrast */
         }
 
+        .hero-section p:last-of-type {
+            font-weight: 600;
+            margin-top: 1rem;
+            font-size: 1.3rem;
+            /* Slightly smaller to differentiate author line */
+        }
+
+
+        /* Navbar */
         .navbar {
             background-color: white;
-            box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.1);
+            box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.1);
+            padding: 1rem 2rem;
         }
 
         .navbar-brand {
             font-weight: bold;
-            font-size: 1.5rem;
-            color: #2c3e50;
+            font-size: 1.8rem;
+            color: #34495e;
         }
 
         .navbar-nav .nav-link {
             font-size: 1rem;
-            color: #2c3e50;
+            color: #34495e;
             margin-right: 1rem;
+            transition: color 0.3s ease;
         }
 
         .navbar-nav .nav-link:hover {
-            color: #1abc9c;
+            color: #16a085;
         }
 
+        /* Section Titles */
+        .section-title {
+            text-align: center;
+            font-weight: bold;
+            font-size: 2.5rem;
+            color: #34495e;
+            margin-bottom: 2rem;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 80px;
+            height: 4px;
+            background: #1abc9c;
+            margin: 0.5rem auto;
+        }
+
+        /* Info Blocks */
+        .info-block {
+            background-color: #ffffff;
+            border: 1px solid #e5e5e5;
+            border-radius: 10px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            padding: 2rem;
+            color: #34495e;
+        }
+
+        .info-block:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .info-block i {
+            font-size: 3rem;
+            color: #16a085;
+            margin-bottom: 1rem;
+        }
+
+        /* Chart Card */
         .chart-card {
             border: none;
-            border-radius: 10px;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
             background-color: white;
-            overflow: hidden;
-            padding: 1.5rem;
+            padding: 1rem;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .chart-card:hover {
+            /* transform: translateY(-5px); */
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
         }
 
         .chart-card h5 {
-            font-size: 1.3rem;
+            font-size: 1.5rem;
             font-weight: bold;
-            color: #2c3e50;
+            color: #34495e;
             margin-bottom: 1rem;
         }
 
         .chart-card p {
             font-size: 1rem;
             color: #7f8c8d;
-            margin-top: 1rem;
         }
 
         iframe {
             display: block;
             width: 100%;
             height: 450px;
+            border-radius: 10px;
             border: none;
-        }
-
-        .chart-features {
-            display: flex;
-            justify-content: flex-end;
-            margin-top: 1rem;
         }
 
         .chart-features .btn {
             font-size: 0.9rem;
-            padding: 0.4rem 0.8rem;
+            padding: 0.4rem 1rem;
             margin-left: 10px;
+            border-radius: 20px;
+            transition: all 0.3s ease;
         }
 
-        .section-title {
-            text-align: center;
-            font-weight: bold;
-            font-size: 2rem;
-            color: #34495e;
-            margin-bottom: 2rem;
+        .chart-features .btn-primary {
+            background: #16a085;
+            border: none;
         }
 
+        .chart-features .btn-primary:hover {
+            background: #1abc9c;
+        }
+
+        .chart-features .btn-secondary {
+            background: #34495e;
+            border: none;
+            color: white;
+        }
+
+        .chart-features .btn-secondary:hover {
+            background: #2c3e50;
+        }
+
+        /* Footer */
         .footer {
-            background-color: #2c3e50;
+            background-color: #34495e;
             color: white;
             text-align: center;
             padding: 2rem 0;
-            font-size: 0.9rem;
-        }
-
-        .info-block {
-            background-color: #f8f9fa;
-            border: 1px solid #dee2e6;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
-
-        .info-block:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
-        }
-
-        .info-block i {
-            font-size: 2rem;
-            color: #007bff;
-        }
-
-        .info-block p {
             font-size: 1rem;
-            color: #495057;
-            margin-top: 1rem;
-            font-weight: 500;
+            border-top: 4px solid #16a085;
+        }
+
+        /* Target Users Section */
+        #target-users {
+            background: linear-gradient(135deg, #34495e, #2c3e50);
+            color: white;
+        }
+
+        #target-users .info-block {
+            background-color: #ffffff;
+            color: #34495e;
+        }
+
+        #target-users .info-block i {
+            color: #1abc9c;
+        }
+
+        #target-users .section-title {
+            color: white;
         }
     </style>
+
     <script>
         // Open chart in fullscreen
         function openFullscreen(url) {
@@ -185,40 +289,40 @@
     </header>
 
     <!-- Introduction Section -->
-    <section id="introduction" class="py-5 bg-light">
+    <section id="introduction" class="py-5" style="background-color: #f8f9fa;">
         <div class="container">
             <h2 class="section-title text-primary">Introduction</h2>
             <p class="text-center mb-4 lead text-secondary">
-                In an era defined by rapid demographic changes, understanding global population dynamics is more crucial
-                than ever. From the fastest-growing regions to shifts in population density, fertility trends, and age
-                demographics, these changes shape the economic, social, and environmental future of our world.
+                In today’s world, people often talk about climate change and the pressure on resources. But population
+                growth is also a big issue for our future. Our platform shows how the world’s population is growing and
+                the challenges this creates, like managing cities, sharing resources, and reducing inequalities. By
+                making complex data easy to understand, we hope to help people make better decisions, learn more, and
+                take action together.
             </p>
             <p class="text-center mb-4">
                 <strong>This platform provides interactive visualizations to explore key questions:</strong>
             </p>
             <div class="row">
                 <div class="col-md-4">
-                    <div class="info-block text-center shadow-sm p-4 rounded">
+                    <div class="info-block text-center shadow-sm p-4 rounded bg-white">
                         <i class="bi bi-geo-alt-fill text-primary fs-3 mb-3"></i>
-                        <p class="mb-0 fw-bold">Where is population growth occurring the fastest, and what are the
-                            contributing factors?</p>
+                        <p class="mb-0 fw-bold">Where is growth fastest (continent to country)?</p>
                     </div>
                 </div>
                 <div class="col-md-4">
-                    <div class="info-block text-center shadow-sm p-4 rounded">
+                    <div class="info-block text-center shadow-sm p-4 rounded bg-white">
                         <i class="bi bi-bar-chart-line-fill text-primary fs-3 mb-3"></i>
-                        <p class="mb-0 fw-bold">How have birth and death rates influenced regional population changes
-                            over time?</p>
+                        <p class="mb-0 fw-bold">What drives growth (causes)?</p>
                     </div>
                 </div>
                 <div class="col-md-4">
-                    <div class="info-block text-center shadow-sm p-4 rounded">
+                    <div class="info-block text-center shadow-sm p-4 rounded bg-white">
                         <i class="bi bi-people-fill text-primary fs-3 mb-3"></i>
-                        <p class="mb-0 fw-bold">What are the future challenges posed by aging populations and shifting
-                            age distributions?</p>
+                        <p class="mb-0 fw-bold">What are future challenges (aging and trends)?</p>
                     </div>
                 </div>
             </div>
+
 
             <p class="text-center mt-4 text-secondary">
                 <strong>Let the data guide you to uncover actionable insights and a deeper appreciation of our shared
@@ -227,16 +331,17 @@
         </div>
     </section>
 
-    <section id="target-users" class="py-5 bg-light">
+    <section id="target-users" class="py-5"
+        style="background: linear-gradient(135deg, #34495e, #2c3e50); color: white;">
         <div class="container">
-            <h2 class="section-title text-primary">Target Users</h2>
-            <p class="text-center mb-4 lead text-secondary">
+            <h2 class="section-title text-light">Target Users</h2>
+            <p class="text-center mb-4 lead">
                 Our platform caters to diverse audiences, helping them understand and act on global population dynamics.
             </p>
             <div class="row">
                 <!-- Policymakers and Urban Planners -->
                 <div class="col-md-3">
-                    <div class="info-block text-center shadow-sm p-4 rounded">
+                    <div class="info-block text-center shadow-sm p-4 rounded bg-white text-dark">
                         <i class="fas fa-balance-scale text-primary fs-3 mb-3"></i>
                         <h5 class="mb-3">Policymakers & Planners</h5>
                         <p class="mb-0">
@@ -248,7 +353,7 @@
 
                 <!-- Researchers -->
                 <div class="col-md-3">
-                    <div class="info-block text-center shadow-sm p-4 rounded">
+                    <div class="info-block text-center shadow-sm p-4 rounded bg-white text-dark">
                         <i class="fas fa-search text-primary fs-3 mb-3"></i>
                         <h5 class="mb-3">Researchers</h5>
                         <p class="mb-0">
@@ -260,7 +365,7 @@
 
                 <!-- Global Organizations -->
                 <div class="col-md-3">
-                    <div class="info-block text-center shadow-sm p-4 rounded">
+                    <div class="info-block text-center shadow-sm p-4 rounded bg-white text-dark">
                         <i class="fas fa-handshake text-primary fs-3 mb-3"></i>
                         <h5 class="mb-3">Global Organizations</h5>
                         <p class="mb-0">
@@ -272,7 +377,7 @@
 
                 <!-- General Public -->
                 <div class="col-md-3">
-                    <div class="info-block text-center shadow-sm p-4 rounded">
+                    <div class="info-block text-center shadow-sm p-4 rounded bg-white text-dark">
                         <i class="fas fa-users text-primary fs-3 mb-3"></i>
                         <h5 class="mb-3">General Public</h5>
                         <p class="mb-0">
@@ -285,6 +390,7 @@
         </div>
     </section>
 
+
     <!-- Group 1 -->
     <section id="group1" class="py-5">
         <div class="container">
@@ -295,15 +401,16 @@
                 <div class="col-md-6">
                     <div class="chart-card">
                         <h5>Population by Region Over Time</h5>
-                        <iframe src="http://localhost:5500/figure_1_2" scrolling="no"></iframe>
-                        <p>Where is the fastest-growing population, and how does this change over time by continent?</p>
+                        <iframe src="http://140.113.230.148:5500/figure_1_2" scrolling="no"></iframe>
+                        <p>Shows how populations are changing across continents and helps identify areas facing more
+                            pressure on resources and infrastructure.</p>
                         <div class="chart-features">
-                            <button onclick="openFullscreen('http://localhost:5500/figure_1_2')"
+                            <button onclick="openFullscreen('http://140.113.230.148:5500/figure_1_2')"
                                 class="btn btn-primary btn-sm">Fullscreen</button>
-                            <button onclick="copyEmbedCode('http://localhost:5500/figure_1_2')"
+                            <button onclick="copyEmbedCode('http://140.113.230.148:5500/figure_1_2')"
                                 class="btn btn-secondary btn-sm">Embed</button>
-                            <a href="http://localhost:5500/dataset/population-regions-with-projections.csv" download
-                                class="btn btn-success btn-sm">Download Dataset</a>
+                            <a href="http://140.113.230.148:5500/dataset/population-regions-with-projections.csv"
+                                download class="btn btn-success btn-sm">Download Dataset</a>
                         </div>
                     </div>
                 </div>
@@ -311,14 +418,15 @@
                 <div class="col-md-6">
                     <div class="chart-card">
                         <h5>Global Population Density Over Time</h5>
-                        <iframe src="http://localhost:5500/figure_1" scrolling="no"></iframe>
-                        <p>Which regions have the highest population density, and how has this evolved over time?</p>
+                        <iframe src="http://140.113.230.148:5500/figure_1" scrolling="no"></iframe>
+                        <p>Highlights where people are most concentrated, helping to understand which areas need more
+                            resources and urban planning.</p>
                         <div class="chart-features">
-                            <button onclick="openFullscreen('http://localhost:5500/figure_1')"
+                            <button onclick="openFullscreen('http://140.113.230.148:5500/figure_1')"
                                 class="btn btn-primary btn-sm">Fullscreen</button>
-                            <button onclick="copyEmbedCode('http://localhost:5500/figure_1')"
+                            <button onclick="copyEmbedCode('http://140.113.230.148:5500/figure_1')"
                                 class="btn btn-secondary btn-sm">Embed</button>
-                            <a href="http://localhost:5500/dataset/population-density.csv" download
+                            <a href="http://140.113.230.148:5500/dataset/population-density.csv" download
                                 class="btn btn-success btn-sm">Download Dataset</a>
                         </div>
                     </div>
@@ -337,15 +445,16 @@
                 <div class="col-md-6">
                     <div class="chart-card">
                         <h5>Birth and Death Rates</h5>
-                        <iframe src="http://localhost:5500/figure_2" scrolling="no"></iframe>
-                        <p>How do natural factors like births and deaths drive population growth in specific regions?
+                        <iframe src="http://140.113.230.148:5500/figure_2" scrolling="no"></iframe>
+                        <p>Explains how birth and death rates affect population changes and helps understand why some
+                            regions grow faster than others.
                         </p>
                         <div class="chart-features">
-                            <button onclick="openFullscreen('http://localhost:5500/figure_2')"
+                            <button onclick="openFullscreen('http://140.113.230.148:5500/figure_2')"
                                 class="btn btn-primary btn-sm">Fullscreen</button>
-                            <button onclick="copyEmbedCode('http://localhost:5500/figure_2')"
+                            <button onclick="copyEmbedCode('http://140.113.230.148:5500/figure_2')"
                                 class="btn btn-secondary btn-sm">Embed</button>
-                            <a href="http://localhost:5500/dataset/birth-rate-vs-death-rate.csv" download
+                            <a href="http://140.113.230.148:5500/dataset/birth-rate-vs-death-rate.csv" download
                                 class="btn btn-success btn-sm">Download Dataset</a>
                         </div>
                     </div>
@@ -353,15 +462,15 @@
                 <div class="col-md-6">
                     <div class="chart-card">
                         <h5>Fertility Rates by Region</h5>
-                        <iframe src="http://localhost:5500/figure_3" scrolling="no"></iframe>
-                        <p>What cultural, social, or economic factors influence fertility rates and, consequently,
-                            regional growth?</p>
+                        <iframe src="http://140.113.230.148:5500/figure_3" scrolling="no"></iframe>
+                        <p>Shows how culture, society, and economy influence the number of children people have and how
+                            that affects population growth.</p>
                         <div class="chart-features">
-                            <button onclick="openFullscreen('http://localhost:5500/figure_3')"
+                            <button onclick="openFullscreen('http://140.113.230.148:5500/figure_3')"
                                 class="btn btn-primary btn-sm">Fullscreen</button>
-                            <button onclick="copyEmbedCode('http://localhost:5500/figure_3')"
+                            <button onclick="copyEmbedCode('http://140.113.230.148:5500/figure_3')"
                                 class="btn btn-secondary btn-sm">Embed</button>
-                            <a href="http://localhost:5500/dataset/fertility-rate-with-projections.csv" download
+                            <a href="http://140.113.230.148:5500/dataset/fertility-rate-with-projections.csv" download
                                 class="btn btn-success btn-sm">Download Dataset</a>
                         </div>
                     </div>
@@ -380,15 +489,15 @@
                 <div class="col-md-6">
                     <div class="chart-card">
                         <h5>Population by Age Group</h5>
-                        <iframe src="http://localhost:5500/figure_4" scrolling="no"></iframe>
-                        <p>How is the global population structured by age, and what pressures does this create on social
-                            systems?</p>
+                        <iframe src="http://140.113.230.148:5500/figure_4" scrolling="no"></iframe>
+                        <p>Breaks down the population by age to show the challenges of supporting younger or older
+                            groups in different regions.</p>
                         <div class="chart-features">
-                            <button onclick="openFullscreen('http://localhost:5500/figure_4')"
+                            <button onclick="openFullscreen('http://140.113.230.148:5500/figure_4')"
                                 class="btn btn-primary btn-sm">Fullscreen</button>
-                            <button onclick="copyEmbedCode('http://localhost:5500/figure_4')"
+                            <button onclick="copyEmbedCode('http://140.113.230.148:5500/figure_4')"
                                 class="btn btn-secondary btn-sm">Embed</button>
-                            <a href="http://localhost:5500/dataset/population-by-age-group.csv" download
+                            <a href="http://140.113.230.148:5500/dataset/population-by-age-group.csv" download
                                 class="btn btn-success btn-sm">Download Dataset</a>
                         </div>
                     </div>
@@ -396,15 +505,15 @@
                 <div class="col-md-6">
                     <div class="chart-card">
                         <h5>Historical Population Growth Rate</h5>
-                        <iframe src="http://localhost:5500/figure_5" scrolling="no"></iframe>
-                        <p>What has been the global growth rate over time, and how can this inform projections for
-                            future challenges?</p>
+                        <iframe src="http://140.113.230.148:5500/figure_5" scrolling="no"></iframe>
+                        <p>Tracks how fast the world’s population has grown over time to help plan for future challenges
+                            and resource needs.</p>
                         <div class="chart-features">
-                            <button onclick="openFullscreen('http://localhost:5500/figure_5')"
+                            <button onclick="openFullscreen('http://140.113.230.148:5500/figure_5')"
                                 class="btn btn-primary btn-sm">Fullscreen</button>
-                            <button onclick="copyEmbedCode('http://localhost:5500/figure_5')"
+                            <button onclick="copyEmbedCode('http://140.113.230.148:5500/figure_5')"
                                 class="btn btn-secondary btn-sm">Embed</button>
-                            <a href="http://localhost:5500/dataset/population-growth-rates.csv" download
+                            <a href="http://140.113.230.148:5500/dataset/population-growth-rates.csv" download
                                 class="btn btn-success btn-sm">Download Dataset</a>
                         </div>
                     </div>
@@ -423,4 +532,4 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 
-</html>
+</html

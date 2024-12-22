@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,7 +9,12 @@
     <link rel="stylesheet" href="style.css">
     <!-- Load D3.js library -->
     <script src="https://d3js.org/d3.v6.min.js"></script>
+    <!-- NoUISlider CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/nouislider@15.6.0/dist/nouislider.min.css" rel="stylesheet">
+    <!-- NoUISlider JS -->
+    <script src="https://cdn.jsdelivr.net/npm/nouislider@15.6.0/dist/nouislider.min.js"></script>
 </head>
+
 <body>
     <!-- Country Selection -->
     <div id="controls">
@@ -17,14 +23,13 @@
 
     <!-- Container for the chart -->
     <div id="my_dataviz"></div>
-
-    <!-- Range slider -->
     <div id="slider-container">
-        <span id="timeLabel">Year: 1950 - 2023</span>
-        <input type="range" id="timeRange" min="1950" max="2023" step="1" value="2023" />
+        <span id="timeLabel">Year Range: <span id="startYearLabel">1950</span> - <span
+                id="endYearLabel">2023</span></span>
+        <div id="timeRange"></div> <!-- Slider container for noUiSlider -->
     </div>
-
     <!-- Link to the external script -->
     <script src="script.js"></script>
 </body>
+
 </html>

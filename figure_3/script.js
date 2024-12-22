@@ -14,45 +14,77 @@ const tooltip = d3.select("body").append("div")
 
 const pointsGroup = svg.append("g").attr("class", "points");
 
-d3.csv("../dataset/fertility-rate-with-projections.csv").then(data => {
-    data.forEach(d => {
-        d.Year = +d.Year;
-        d.FertilityEstimate = d["Fertility rate - Sex: all - Age: all - Variant: estimates"]
-            ? +d["Fertility rate - Sex: all - Age: all - Variant: estimates"]
-            : +d["Fertility rate - Sex: all - Age: all - Variant: medium"];
-    });
+// Define the updateChart function
+function updateChart(data, startYear, endYear) {
+    // Filter data for the selected range
+    const filteredData = data.filter(d => d.Year >= startYear && d.Year <= endYear);
 
-    const regions = d3.group(data, d => d.Entity);
-    const color = d3.scaleOrdinal(d3.schemeCategory10);
+    // Clear previous elements
+    svg.selectAll("*").remove();
 
+    // Update X and Y scales based on the filtered data
     const x = d3.scaleLinear()
-        .domain(d3.extent(data, d => d.Year))
+        .domain([startYear, endYear])
         .range([0, width]);
 
-    const yTicks = 7;
     const y = d3.scaleLinear()
-        .domain([0, 7])
+        .domain([0, 7]) // Assuming the Y range remains fixed
         .range([height, 0]);
 
+    // Add X-axis
     svg.append("g")
         .attr("transform", `translate(0,${height})`)
         .call(d3.axisBottom(x).tickFormat(d3.format("d")));
 
+    // Add Y-axis gridlines
     svg.append("g")
         .attr("class", "grid")
         .call(d3.axisLeft(y)
             .tickSize(-width)
-            .ticks(yTicks))
+            .ticks(7))
         .selectAll("line")
         .attr("stroke", "#ddd");
 
     svg.selectAll(".grid .domain").remove();
 
+    // Re-draw lines for each region
+    const regions = d3.group(filteredData, d => d.Entity);
+    const color = d3.scaleOrdinal(d3.schemeCategory10);
+
+    regions.forEach((values, key) => {
+        const pastData = values.filter(d => d.Year <= 2023);
+        const futureData = values.filter(d => d.Year > 2023);
+
+        // Draw past data
+        svg.append("path")
+            .datum(pastData)
+            .attr("fill", "none")
+            .attr("stroke", color(key))
+            .attr("stroke-width", 1.5)
+            .attr("id", `line-${key.replace(/[^\w-]/g, "")}`)
+            .attr("class", "line")
+            .attr("d", d3.line()
+                .x(d => x(d.Year))
+                .y(d => y(d.FertilityEstimate)));
+
+        // Draw future projections
+        svg.append("path")
+            .datum(futureData)
+            .attr("fill", "none")
+            .attr("stroke", color(key))
+            .attr("stroke-width", 1.5)
+            .attr("stroke-dasharray", "4 4")
+            .attr("id", `line-${key.replace(/[^\w-]/g, "")}`)
+            .attr("class", "line")
+            .attr("d", d3.line()
+                .x(d => x(d.Year))
+                .y(d => y(d.FertilityEstimate)));
+    });
+
+    // Add legend dynamically
     const legend = svg.append("g")
         .attr("transform", `translate(${width}, 0)`);
-
     let legendYOffset = 0;
-
     const simplifyKey = (key) => {
         const keyMap = {
             "Latin America and the Caribbean (UN)": "Latin America",
@@ -60,38 +92,6 @@ d3.csv("../dataset/fertility-rate-with-projections.csv").then(data => {
         };
         return keyMap[key] || key.replace(/\s*\(.*?\)/g, "").trim();
     };
-
-    const lines = {};
-    regions.forEach((values, key) => {
-        const pastData = values.filter(d => d.Year <= 2023);
-        const futureData = values.filter(d => d.Year > 2023);
-
-        const line = svg.append("path")
-            .datum(pastData)
-            .attr("fill", "none")
-            .attr("stroke", color(key))
-            .attr("stroke-width", 1.5)
-            .attr("class", "line")
-            .attr("id", `line-${key.replace(/[^\w-]/g, "")}`)
-            .attr("d", d3.line()
-                .x(d => x(d.Year))
-                .y(d => y(d.FertilityEstimate)));
-
-        svg.append("path")
-            .datum(futureData)
-            .attr("fill", "none")
-            .attr("stroke", color(key))
-            .attr("stroke-width", 1.5)
-            .attr("stroke-dasharray", "4 4")
-            .attr("class", "line")
-            .attr("id", `line-${key.replace(/[^\w-]/g, "")}`)
-            .attr("d", d3.line()
-                .x(d => x(d.Year))
-                .y(d => y(d.FertilityEstimate)));
-
-        lines[key] = line;
-    });
-
     regions.forEach((_, key) => {
         const simplifiedKey = simplifyKey(key);
 
@@ -115,24 +115,24 @@ d3.csv("../dataset/fertility-rate-with-projections.csv").then(data => {
 
         legendYOffset += 25;
     });
-
+    function resetLines() {
+        svg.selectAll(".line").style("opacity", 1).style("stroke-width", 1.5);
+    }
     function highlightLine(key) {
         svg.selectAll(".line").style("opacity", 0.2);
         svg.selectAll(`#line-${key.replace(/[^\w-]/g, "")}`).style("opacity", 1).style("stroke-width", 2.5);
     }
-
-    function resetLines() {
-        svg.selectAll(".line").style("opacity", 1).style("stroke-width", 1.5);
-    }
-
+    // Re-create the vertical line for interactivity
     const verticalLine = svg.append("line")
         .attr("stroke", "#aaa")
         .attr("stroke-width", 1)
-        .attr("y1", 0).attr("y2", height)
+        .attr("y1", 0)
+        .attr("y2", height)
         .style("display", "none");
 
     svg.append("rect")
-        .attr("width", width).attr("height", height)
+        .attr("width", width)
+        .attr("height", height)
         .style("fill", "none")
         .style("pointer-events", "all")
         .on("mousemove", mousemove)
@@ -147,7 +147,8 @@ d3.csv("../dataset/fertility-rate-with-projections.csv").then(data => {
         const year = Math.round(x.invert(mouseX));
 
         verticalLine.style("display", "block")
-            .attr("x1", x(year)).attr("x2", x(year));
+            .attr("x1", x(year))
+            .attr("x2", x(year));
 
         tooltip.style("display", "block")
             .style("left", `${event.pageX + 10}px`)
@@ -158,6 +159,7 @@ d3.csv("../dataset/fertility-rate-with-projections.csv").then(data => {
         const tooltipValues = [];
         regions.forEach((values, key) => {
             const closest = values.find(d => d.Year === year);
+            
             if (closest) {
                 tooltipValues.push({ key, value: closest.FertilityEstimate });
                 pointsGroup.append("circle")
@@ -202,7 +204,64 @@ d3.csv("../dataset/fertility-rate-with-projections.csv").then(data => {
                 `).join('')}
             </div>
         `);
-
-
     }
+}
+
+
+d3.csv("../dataset/fertility-rate-with-projections.csv").then(data => {
+    data.forEach(d => {
+        d.Year = +d.Year;
+        d.FertilityEstimate = d["Fertility rate - Sex: all - Age: all - Variant: estimates"]
+            ? +d["Fertility rate - Sex: all - Age: all - Variant: estimates"]
+            : +d["Fertility rate - Sex: all - Age: all - Variant: medium"];
+    });
+
+    // Set default range
+    const startYear = 1950;
+    const endYear = 2100;
+
+    // Call updateChart for the initial render
+    updateChart(data, startYear, endYear);
+
+    const timeSlider = document.getElementById("timeSlider");
+    const startYearLabel = document.getElementById("startYearLabel");
+    const endYearLabel = document.getElementById("endYearLabel");
+
+    // Set the range for the slider
+    let minYear = 1950;
+    let maxYear = 2100;
+
+    // Initialize the noUiSlider
+    noUiSlider.create(timeSlider, {
+        start: [minYear, maxYear], // Initial range
+        connect: true,
+        range: {
+            min: minYear,
+            max: maxYear,
+        },
+        step: 1, // Increment by 1 year
+        tooltips: [true, true], // Show tooltips for both handles
+        format: {
+            to: value => Math.round(value),
+            from: value => Number(value),
+        },
+    });
+
+    // Update chart and labels when slider values change
+    timeSlider.noUiSlider.on("update", (values) => {
+        const [startYear, endYear] = values.map(v => Math.round(v));
+
+        // Update labels dynamically
+        startYearLabel.textContent = startYear;
+        endYearLabel.textContent = endYear;
+
+        // Validate and update chart
+        if (endYear - startYear >= 10) { // Minimum range validation
+            updateChart(data, startYear, endYear);
+        } else {
+            startYearLabel.textContent = "Invalid";
+            endYearLabel.textContent = "Range";
+        }
+    });
+
 });

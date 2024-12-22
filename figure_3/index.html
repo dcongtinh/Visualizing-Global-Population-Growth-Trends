@@ -1,16 +1,36 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Responsive Fertility Rate Visualization</title>
     <link rel="stylesheet" href="style.css">
     <script src="https://d3js.org/d3.v6.min.js"></script>
+    <!-- NoUISlider CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/nouislider@15.6.0/dist/nouislider.min.css" rel="stylesheet">
+    <!-- NoUISlider JS -->
+    <script src="https://cdn.jsdelivr.net/npm/nouislider@15.6.0/dist/nouislider.min.js"></script>
 </head>
+
 <body>
     <div class="chart-container">
         <svg></svg>
+        <!-- Range slider -->
+        <!-- <div id="slider-container">
+            <span id="timeLabel">Year: 1950 - 2023</span>
+            <input type="range" id="timeRange" min="1950" max="2023" step="1" value="2023" />
+        </div> -->
+
+        <div id="slider-container">
+            <span id="timeLabel">Year Range: <span id="startYearLabel">1950</span> - <span
+                    id="endYearLabel">2023</span></span>
+            <div id="timeSlider"></div> <!-- Container for the noUiSlider -->
+        </div>
+
     </div>
+
     <script src="script.js"></script>
 </body>
+
 </html>

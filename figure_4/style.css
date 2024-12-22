@@ -23,30 +23,61 @@ body {
     /* Ensure padding doesn’t add to total width */
 }
 
-/* Slider Container */
+/* Fixes spacing and positioning of the labels */
 #slider-container {
     display: flex;
-    justify-content: center;
+    flex-direction: column;
     align-items: center;
-    flex-wrap: nowrap;
-    /* Prevent overflow */
     width: 100%;
-    box-sizing: border-box;
+    margin: 10px 0;
 }
 
-#slider-container input[type="range"] {
-    margin: 0 10px;
-    width: 300px;
-}
-
-#slider-container label,
-#slider-container span {
+#slider-container>span {
     font-size: 14px;
     font-weight: bold;
     color: #333;
     text-align: center;
-    /* Keep elements centered */
+    margin-bottom: 10px;
 }
+
+#rangeLabel {
+    margin-bottom: 10px;
+    font-size: 16px;
+    font-weight: bold;
+    text-align: center;
+}
+
+/* Custom slider styles for alignment and spacing */
+.noUi-horizontal {
+    width: 80%;
+    margin: 0 auto;
+    /* Center the slider */
+}
+
+.noUi-handle {
+    background-color: #00aaff;
+    border: 2px solid #0077cc;
+    border-radius: 50%;
+    height: 20px;
+    width: 20px;
+    cursor: pointer;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+/* Fixes tooltip placement and alignment */
+.noUi-tooltip {
+    background: #fff;
+    border: 1px solid #ccc;
+    color: #333;
+    font-size: 12px;
+    font-weight: bold;
+    border-radius: 4px;
+    padding: 4px 8px;
+    text-align: center;
+    transform: translateY(-150%);
+    /* Adjust tooltip position above handles */
+}
+
 
 /* Tooltip Styles */
 .tooltip {
@@ -140,50 +171,6 @@ body {
 
     #my_dataviz {
         padding: 0;
-        /* Reduce padding for smaller screens */
         width: 95%;
-        /* Adjust chart width */
     }
-}
-
-#timeRange {
-    width: 90%;
-    max-width: 500px;
-    margin: 10px 0;
-    -webkit-appearance: none;
-    appearance: none;
-    height: 6px;
-    background: #ddd;
-    border-radius: 5px;
-    outline: none;
-    transition: background 0.3s ease;
-}
-
-#timeRange::-webkit-slider-thumb {
-    -webkit-appearance: none;
-    appearance: none;
-    width: 20px;
-    height: 20px;
-    border-radius: 50%;
-    background: #00aaff;
-    cursor: pointer;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-}
-
-#timeRange::-moz-range-thumb {
-    width: 20px;
-    height: 20px;
-    border-radius: 50%;
-    background: #00aaff;
-    cursor: pointer;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-}
-
-#timeRange::-ms-thumb {
-    width: 20px;
-    height: 20px;
-    border-radius: 50%;
-    background: #00aaff;
-    cursor: pointer;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
 }

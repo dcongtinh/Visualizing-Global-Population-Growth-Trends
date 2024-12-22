@@ -64,13 +64,12 @@ const tooltip = d3.select("body").append("div")
 year = 2023;
 
 const slider = document.getElementById('year-slider');
+const playButton = document.getElementById("play-button");
 const currentYearDisplay = document.getElementById('current-year');
 
-slider.addEventListener('input', function () {
-    year = +slider.value;
-    currentYearDisplay.textContent = year;
-    updateMapForYear(year);
-});
+let interval; // To store the animation interval
+let isPlaying = false; // To track the play/pause state
+
 
 function updateMapForYear(selectedYear) {
     d3.csv(worldpopulationdesity).then(rawData => {
@@ -91,6 +90,44 @@ function updateMapForYear(selectedYear) {
         console.error("Error updating data for year:", error);
     });
 }
+
+slider.addEventListener('input', function () {
+    year = +slider.value;
+    currentYearDisplay.textContent = year;
+    updateMapForYear(year);
+});
+
+// Function to play/pause the animation
+function togglePlay() {
+    if (isPlaying) {
+        clearInterval(interval);
+        playButton.textContent = "Play";
+    } else {
+        playButton.textContent = "Pause";
+        slider.value = 1950
+        interval = setInterval(() => {
+            let currentYear = +slider.value;
+            if (currentYear < +slider.max) {
+                currentYear+=10;
+                if (currentYear>2023){
+                    currentYear = 2023
+                }
+            } else {
+                clearInterval(interval); // Stop animation at max year
+                playButton.textContent = "Play";
+                isPlaying = false;
+                return;
+            }
+            slider.value = currentYear;
+            currentYearDisplay.textContent = currentYear;
+            updateMapForYear(currentYear);
+        }, 500); // Adjust the interval duration for speed
+    }
+    isPlaying = !isPlaying;
+}
+
+// Add event listener to play button
+playButton.addEventListener("click", togglePlay);
 
 svg.append("rect")
     .attr("class", "background")
@@ -182,10 +219,6 @@ let tooltipcontent = (countryName, populationDensity, year, countryCode, filtere
             <div style="font-size: 14px; margin-bottom: 6px;">
                 <span style="font-weight: 600;">Population Density:</span> 
                 <span>${populationDensity} people/km²</span>
-            </div>
-            <div style="font-size: 14px; margin-bottom: 6px;">
-                <span style="font-weight: 600;">Year:</span> 
-                <span>${year}</span>
             </div>
             <div id="chart-container" style="margin-top: 10px; width: 220px; height: 100px; background: #eef2f3; border: 1px dashed #ccc; border-radius: 4px; display: flex; justify-content: center; align-items: center;">
             </div>

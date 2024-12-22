@@ -40,7 +40,7 @@ d3.csv("../dataset/population-growth-rates.csv").then(data => {
     // Initial settings
     const minYear = 1950;
     const maxYearFull = 2100; // Extend max year to 2100
-    let maxYear = +slider.node().value;
+    let maxYear = maxYearFull;
 
     slider.attr("max", maxYearFull); // Set slider max to 2100
 
@@ -57,15 +57,40 @@ d3.csv("../dataset/population-growth-rates.csv").then(data => {
         updateChart(filteredData, minYear, maxYear);
     });
 
-    // Update chart when the year range changes
-    slider.on("input", () => {
-        const newMaxYear = +slider.node().value;
-        if (newMaxYear - minYear >= 10) {
-            maxYear = newMaxYear;
-            timeLabel.text(`Year: ${minYear} - ${maxYear}`);
-            updateChart(filteredData, minYear, maxYear);
+    const timeSlider = document.getElementById("timeSlider");
+    const timeLabel = d3.select("#timeLabel");
+
+    // Initialize noUiSlider
+    noUiSlider.create(timeSlider, {
+        start: [1950, 2100], // Initial range
+        connect: true, // Show connection between handles
+        range: {
+            min: 1950,
+            max: 2100,
+        },
+        step: 1, // Increment by 1 year
+        tooltips: [true, true], // Show tooltips on both handles
+        format: {
+            to: value => Math.round(value), // Ensure integer values
+            from: value => Number(value),
+        },
+    });
+
+    // Update chart and labels dynamically
+    timeSlider.noUiSlider.on("update", values => {
+        const [startYear, endYear] = values.map(v => Math.round(v)); // Parse values as integers
+
+        // Update the year range label
+        timeLabel.text(`Year: ${startYear} - ${endYear}`);
+
+        // Validate and update the chart
+        if (endYear - startYear >= 10) { // Enforce a minimum range of 10 years
+            updateChart(filteredData, startYear, endYear); // Use the same `updateChart` function
+        } else {
+            // timeLabel.text("Invalid Range: Select a range of at least 10 years");
         }
     });
+
 
     function updateChart(countryData, minYear, maxYear) {
         // Filter data by the selected year range

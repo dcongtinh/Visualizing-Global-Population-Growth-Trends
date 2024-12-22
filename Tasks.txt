@@ -49,3 +49,67 @@ Figure 3:
 - Make fullscreen view - OK
 - Make the introduction - OK 
 - Make the group analysis - OK  (Script)
+
+- Learn the Script
+- Check the describe on the screen
+- Add more tooltip inside the website to define everything.
+- Add the targets users as the blocks
+- Add summary inside the final part
+- Edit the footer for more professional
+
+
+
+### **Meaning of Each Chart in the Proposal (English Version)**
+
+---
+
+### **1. Population by Region Over Time (Stacked Area Chart)**
+- **Meaning:** Displays population trends over time across continents, highlighting regions with the fastest growth.  
+- **Example:** The chart shows that Africa has experienced the fastest population growth since 1950, while Europe has remained stable and started to decline after 2000.  
+- **Contribution:** Provides an overview of which regions face resource and infrastructure pressure due to population growth.
+
+---
+
+### **2. Global Population Density (Choropleth Map)**
+- **Meaning:** Visualizes population density by country, identifying densely populated areas.  
+- **Example:** India and China have the highest population densities, while regions like Siberia (Russia) and the Sahara Desert have very low densities.  
+- **Contribution:** Pinpoints resource-demand hotspots and urbanization challenges.
+
+---
+
+### **3. Annual Birth and Death Rates (Bubble Chart)**
+- **Meaning:** Compares annual birth and death rates to understand natural factors driving or stabilizing population growth.  
+- **Example:** In India, birth rates are significantly higher than death rates, while in Japan, death rates exceed birth rates, leading to a declining population.  
+- **Contribution:** Explains the natural drivers behind population changes, offering insights into demographic dynamics for each region.
+
+---
+
+### **4. Fertility Rates by Region (Line Chart)**
+- **Meaning:** Shows trends in fertility rates across regions over time, reflecting economic, social, and cultural influences.  
+- **Example:** Africa maintains a high fertility rate (over 4 children per woman), while Europe’s fertility rate dropped below 2 children per woman since 1990.  
+- **Contribution:** Highlights why some regions continue to grow rapidly while others stabilize or decline.
+
+---
+
+### **5. Population by Age Group (Stacked Area Chart)**
+- **Meaning:** Breaks down the global population by age group (youth, working-age, elderly) over time.  
+- **Example:** Africa’s youthful population is increasing rapidly, creating pressure on education and employment systems. Conversely, Europe’s aging population raises healthcare and pension costs.  
+- **Contribution:** Explores demographic shifts and their impacts on economies, social systems, and the workforce.
+
+---
+
+### **6. Population Growth Rate Over Time (Line Chart)**
+- **Meaning:** Tracks global population growth rate changes over decades, revealing long-term patterns.  
+- **Example:** The global growth rate peaked in the 1960s (over 2%) and has steadily declined to below 1% by 2024.  
+- **Contribution:** Sets historical context for trends and helps project future challenges such as resource management and demographic balancing.
+
+---
+
+### **Overall Contribution**
+- These charts collectively provide a comprehensive perspective on global population trends:
+  1. **Identify regional growth trends and challenges** (Charts 1 & 2).
+  2. **Analyze natural and social drivers of growth** (Charts 3 & 4).
+  3. **Clarify demographic structures and pressures** (Charts 5 & 6).
+  4. **Support sustainable development strategies, policymaking, and resource allocation.**
+
+The charts complement each other, creating a visually compelling and easy-to-understand narrative about global population dynamics.

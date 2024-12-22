@@ -227,20 +227,56 @@ d3.csv("../dataset/population-by-age-group.csv").then(data => {
     });
 
     let selectedCountry = "World";
+
+    // Create noUiSlider for the time range
+    const timeSlider = document.getElementById("timeRange");
+    const startYearLabel = document.getElementById("startYearLabel");
+    const endYearLabel = document.getElementById("endYearLabel");
+
+    // Define initial range values
     let minYear = 1950;
-    let maxYear = +slider.value;
+    let maxYear = 2023;
+
+    // Initialize the dual-handle slider
+    noUiSlider.create(timeSlider, {
+        start: [minYear, maxYear], // Initial range
+        connect: true, // Connect the slider handles
+        range: {
+            min: 1950,
+            max: 2023,
+        },
+        step: 1, // Increment by 1 year
+        tooltips: [true, true], // Show tooltips on both handles
+        format: {
+            to: value => Math.round(value), // Ensure integers
+            from: value => Number(value),
+        },
+    });
+
+    // Handle slider updates
+    timeSlider.noUiSlider.on("update", (values) => {
+        const [startYear, endYear] = values.map(v => Math.round(v)); // Parse values as integers
+
+        // Update labels dynamically
+        startYearLabel.textContent = startYear;
+        endYearLabel.textContent = endYear;
+
+        // Update chart when the range changes
+        if (endYear - startYear >= 10) { // Minimum range validation
+            minYear = startYear;
+            maxYear = endYear;
+
+            const filteredData = data.filter(d => d.Entity === selectedCountry && d.Year >= minYear && d.Year <= maxYear);
+            updateChart(filteredData, minYear, maxYear);
+        } else {
+            startYearLabel.textContent = "Invalid Range";
+            endYearLabel.textContent = "Invalid Range";
+        }
+    });
+
 
     let filteredData = data.filter(d => d.Entity === selectedCountry);
     updateChart(filteredData, minYear, maxYear);
-
-    slider.addEventListener("input", (e) => {
-        const newMaxYear = +e.target.value;
-        if (newMaxYear - minYear >= 10) {
-            maxYear = newMaxYear;
-            timeLabel.textContent = `Year: ${minYear} - ${maxYear}`;
-            updateChart(filteredData, minYear, maxYear);
-        }
-    });
 
     countrySelect.addEventListener("change", (e) => {
         selectedCountry = e.target.value;
