@@ -235,7 +235,7 @@ function updateChart(data, year, regions) {
     g.selectAll(".country-label")
         .data(filteredData
             .sort((a, b) => b.population - a.population) // Sort by population (descending)
-            .slice(0, 10) // Show only top 15 countries
+            .slice(0, 25) // Show only top 15 countries
         )
         .enter()
         .append("text")
